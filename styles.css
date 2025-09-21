@@ -1,165 +1,193 @@
-/* Reset / Base */
+/* =============================
+   Sustainable Living — Full CSS
+   (matches the screenshot)
+   ============================= */
+
+/* Global */
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-img { max-width: 100%; display: block; }
+html { font-size: 16px; }
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-  background: #fafafa;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5;
+  background: #efefef;
   color: #111;
 }
 
-/* Header */
-header[role="banner"] {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: #fff;
-  border-bottom: 4px solid #2d7a2e;
+/* Center main regions to 90% / max 1200 */
+header,
+#content-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Links */
+a { color: #008000; }
+a:hover { color: #075a22; }
+
+/* =============================
+   Header + J Logo
+   ============================= */
+header {
+  position: relative;                 /* lets the logo be positioned inside */
+  padding: .6rem 0 .4rem;
 }
 header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #1a5d1a;
-}
-#logo {
-  width: 42px;
-  height: auto;
+  text-align: left;                   /* like the screenshot */
+  padding-left: 50px;                 /* clears the J area */
 }
 
-/* Nav Bar */
-nav[role="navigation"] {
-  background: #2d7a2e;
+/* Make the “J” hang over the green bar */
+#logo{
+  position: absolute;                 /* relative to <header> */
+  left: 0;
+  top: 12px;                          /* tweak for more/less overlap */
+  height: 100px;                      /* matches look in figure */
+  width: auto;
+  z-index: 10;                        /* sits on top of the nav bar */
 }
+
+/* =============================
+   Green Navbar (full width)
+   ============================= */
+nav {
+  background: #008000;                /* green bar */
+  border-top: 4px solid #1eaa39;      /* thin lighter strip */
+  position: relative;
+  z-index: 1;                         /* stay behind the J */
+  display: flex;                      /* lets us center the UL */
+  justify-content: center;
+}
+
+/* Center the links row in the bar */
 nav ul {
-  display: flex;
   list-style: none;
-  margin: 0;
-  padding: .5rem 1.5rem;
-  gap: 1.5rem;
+  margin: 0;                          /* UL itself has no extra margins */
+  padding: 0;
+  display: flex;
+  justify-content: center;            /* links centered under the title */
+  align-items: center;
+  gap: 2rem;                          /* space between links */
 }
+nav li { display: inline-block; }
 nav a {
-  color: #f0f8f1;
-  font-weight: 600;
+  display: inline-block;
+  padding: 1rem 1.1rem;
   text-decoration: none;
-  padding: .25rem .5rem;
-  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
 }
-nav a:hover, nav a:focus {
-  background: rgba(255,255,255,0.2);
-}
-
-/* Layout */
-#content-wrapper {
-  max-width: 1000px;
-  margin: 2rem auto;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 1.5rem;
-  padding: 0 1rem;
+nav a:hover {
+  background: #000;
+  color: #9ae39a;
 }
 
-/* Main Article */
-main article img {
-  float: left;
-  margin: 0 1rem 1rem 0;
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+/* =============================
+   Two-Column Layout (Sidebar + Main)
+   ============================= */
+#content-wrapper{
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 10px;
 }
-main article h2 {
-  margin-top: 0;
-  font-size: 1.25rem;
-  color: #1a5d1a;
+
+/* Sidebar (left) — fixed width like the picture */
+#content-wrapper > aside{
+  background: #ccc;                   /* grey slab behind cards */
+  padding: .5rem;
+  margin-right: 1rem;
+  position: relative;
+  top: 20px;                          /* nudge down to align with main image */
+  order: 1;                           /* left column */
+  flex: 0 0 240px;                    /* ~240px fixed */
+  max-width: 240px;
 }
-main article p {
+
+/* Main (right) fills remaining space */
+#content-wrapper > main{
+  order: 2;
+  flex: 1;
+}
+
+/* Sidebar cards */
+aside h2{
+  margin: 0 0 .5rem 0;
+  white-space: nowrap;
+}
+aside section{
+  background: #fff;
+  border: 1px solid #008000;
   margin-bottom: 1rem;
 }
-
-/* Project Section (Rain/Compost/Solar) */
-main section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 2rem;
-}
-main section h2 {
-  background: #2d7a2e;
+aside h3{
+  background: #008000;
   color: #fff;
+  padding: .5rem;
   margin: 0;
-  padding: .5rem;
+  font-weight: 700;
+}
+aside a{ display: inline-block; padding: .5rem; }
+
+/* =============================
+   Main Article + Hero Image
+   ============================= */
+main article img{
+  border: 3px double #333;            /* per assignment */
+  float: left;                        /* text wraps around */
+  margin: .5rem 1rem .5rem 0;         /* top/right/bottom/left */
+  height: auto;
+  max-width: 100%;
+}
+main article h2{ margin-top: 0; }
+
+/* =============================
+   Bottom Three Green Panels
+   ============================= */
+main > section{
+  display: flex;
+  margin-top: 1rem;
+}
+main > section > div{
+  background: #e7f7e7;                /* pale green panel */
+  border: 1px solid #008000;
+  border-radius: 10px;
   text-align: center;
-  font-size: 1rem;
+  flex: 1;
+  margin-right: 1rem;
+  padding-bottom: .5rem;
 }
-main section a {
-  display: block;
-  text-align: center;
-  padding: .5rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  text-decoration: none;
-  color: #0d3f0d;
-  font-weight: 600;
+main > section > div:last-child{ margin-right: 0; }
+
+main > section > div > h2{
+  background: #008000;
+  color: #fff;
+  margin: 0;                          /* remove top margin */
+  padding: .4rem .6rem;
+  border-radius: 10px 10px 0 0;       /* rounded top corners only */
+  font-size: 1.1rem;
+  font-weight: 700;
 }
-main section a:hover {
-  text-decoration: underline;
-}
-main section img {
-  width: 100%;
+main > section > div img{
+  display: block;                     /* lets auto margins center it */
+  margin: .5rem auto;
+  border: 3px double #333;
+  max-width: 90%;
   height: auto;
 }
+main > section > div a{ text-decoration: none; }
+main > section > div a p{ margin: .3rem 0 .6rem; color: #008000; }
 
-/* Sidebar */
-aside {
-  background: #f4f6f4;
-  padding: 1rem;
-  border: 1px solid #cfd8cf;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-aside h2 {
-  margin-top: 0;
-  font-size: 1.1rem;
+/* Footer */
+footer{
+  width: 90%;
+  max-width: 1200px;
+  margin: 1.25rem auto 2rem;
   color: #333;
-}
-aside section {
-  margin-bottom: 1rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-}
-aside section h3 {
-  margin: 0;
-  padding: .5rem;
-  background: #7fc37f;
-  font-size: 1rem;
-  color: #0d2a0d;
-}
-aside section a {
-  display: block;
-  padding: .5rem .75rem;
-  color: #2d7a2e;
-  text-decoration: none;
-}
-aside section a:hover {
-  text-decoration: underline;
+  font-size: .9rem;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  #content-wrapper {
-    grid-template-columns: 1fr;
-  }
-  main section {
-    grid-template-columns: 1fr;
-  }
-  main article img {
-    float: none;
-    margin: 0 0 1rem;
-    width: 100%;
-  }
-}
